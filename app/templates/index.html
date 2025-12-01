@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Submit a Message</h1>
+<form method="post" action="{{ url_for('submit_message') }}">
+  <label>Username (optional)</label>
+  <input name="username" placeholder="username">
+  <br>
+  <label>Message</label>
+  <textarea name="message"></textarea>
+  <br>
+  <button type="submit">Submit</button>
+</form>
+
+<h2>Messages</h2>
+<ul>
+  {% for m in messages %}
+    <li><strong>{{ m['username'] or 'anonymous' }}</strong>: {{ m['message'] }} <small>({{ m['created_at'] }})</small></li>
+  {% else %}
+    <li>No messages yet</li>
+  {% endfor %}
+</ul>
+{% endblock %}
